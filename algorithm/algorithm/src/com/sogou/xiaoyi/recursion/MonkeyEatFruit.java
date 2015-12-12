@@ -1,4 +1,4 @@
-package com.sogou.xiaoyi;
+package com.sogou.xiaoyi.recursion;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.sogou.xiaoyi;
+package com.sogou.xiaoyi.recursion;
 
 public class Test {
 	
@@ -13,7 +13,7 @@ public class Test {
 		System.out.println(binarySearch(a, 10));
 	}
 
-	//å†’æ³¡
+	//???æ³?
 	public static void BubbleSorter (int[] list){
 		for(int i=0;i<list.length;i++){
 			for(int j=i+1;j<list.length;j++){
@@ -25,7 +25,7 @@ public class Test {
 			}
 		}
 	}
-	//äºŒåˆ†æŸ¥æ‰¾
+	//äº??????¥æ??
 	public static int binarySearch(int[] list, int key){
 		int low = 0;
 		int high = list.length-1;
@@ -42,7 +42,7 @@ public class Test {
 		return -1;
 	}
 	
-	//å¿«é€ŸæŽ’åº
+	//å¿???????åº?
 	public static void quickSort(int[] arr,int left,int right){
 		if(left < right){
 			int low = left,high = right;

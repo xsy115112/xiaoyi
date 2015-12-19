@@ -40,6 +40,27 @@ public class RemoveDuplicates {
 		}
 	}
 	
+	//O(n) O(1)
+	public int removeDuplicates01(int[] nums) {
+		if(nums ==null || nums.length==0){
+			return 0;
+		}else if(nums.length==1){
+			return 1;
+		}else{
+			int temp = nums[0];
+			int len = 1;
+			for(int i=0;i<nums.length;i++){
+				if(nums[i]==temp){
+					continue;
+				}
+				temp = nums[i];
+				nums[len] = nums[i];
+				len++;
+			}
+			return len;
+		}
+	}
+	
 	@Test
 	public void test(){
 		int [] nums = {1,1};

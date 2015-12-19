@@ -1,4 +1,4 @@
-package com.sogou.xiaoyi.activemq;
+package com.sogou.xiaoyi.activemq.queue;
 
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
@@ -6,17 +6,18 @@ import javax.jms.Destination;
 import javax.jms.JMSException;
 import javax.jms.MessageConsumer;
 import javax.jms.Session;
+import javax.jms.TextMessage;
 
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 /**
- * 监听器方式（推荐）
+ * 循环方式获取消息（不推荐）
  * 
  * @author xiaoyi
  *
  */
-public class JMSConsumer {
+public class JMSConsumer2 {
 	//默认用户名
 	public static String USERNAME = ActiveMQConnection.DEFAULT_USER;
 	//默认密码
@@ -33,7 +34,7 @@ public class JMSConsumer {
 		Session session = null;
 		//目的地
 		Destination destination = null;
-		//消息消费者
+		//消息生产者
 		MessageConsumer messageCosumer = null;
 		
 		connectionFactory = new ActiveMQConnectionFactory(USERNAME, PASSWORD, BROKENURL);
@@ -47,8 +48,14 @@ public class JMSConsumer {
 			destination = session.createQueue("firstQueue");
 			//消息消费者
 			messageCosumer = session.createConsumer(destination);
-			//注册监听器
-			messageCosumer.setMessageListener(new Listener());
+			while (true) {
+				TextMessage textMessage = (TextMessage) messageCosumer.receive(100000);
+				if(textMessage != null){
+					System.out.println(textMessage.getText());
+				}else{
+					break;
+				}
+			}
 		} catch (JMSException e) {
 			e.printStackTrace();
 		}finally{

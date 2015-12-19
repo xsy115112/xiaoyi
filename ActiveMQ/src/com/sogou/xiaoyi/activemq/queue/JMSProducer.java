@@ -1,23 +1,22 @@
-package com.sogou.xiaoyi.activemq;
+package com.sogou.xiaoyi.activemq.queue;
 
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.Destination;
 import javax.jms.JMSException;
-import javax.jms.MessageConsumer;
+import javax.jms.MessageProducer;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
-
 /**
- * 循环方式获取消息（不推荐）
+ * 
  * 
  * @author xiaoyi
  *
  */
-public class JMSConsumer2 {
+public class JMSProducer {
 	//默认用户名
 	public static String USERNAME = ActiveMQConnection.DEFAULT_USER;
 	//默认密码
@@ -35,7 +34,7 @@ public class JMSConsumer2 {
 		//目的地
 		Destination destination = null;
 		//消息生产者
-		MessageConsumer messageCosumer = null;
+		MessageProducer messageProducer = null;
 		
 		connectionFactory = new ActiveMQConnectionFactory(USERNAME, PASSWORD, BROKENURL);
 		try {
@@ -43,19 +42,17 @@ public class JMSConsumer2 {
 			connection.start();
 			//第一个参数 是否有事务
 			//第二个参数 消息确认参数
-			session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+			session = connection.createSession(true, Session.AUTO_ACKNOWLEDGE);
 			//创建消息队列
 			destination = session.createQueue("firstQueue");
-			//消息消费者
-			messageCosumer = session.createConsumer(destination);
-			while (true) {
-				TextMessage textMessage = (TextMessage) messageCosumer.receive(100000);
-				if(textMessage != null){
-					System.out.println(textMessage.getText());
-				}else{
-					break;
-				}
+			//消息生产者
+			messageProducer = session.createProducer(destination);
+			//发送10条消息
+			for(int i=0;i<10;i++){
+				TextMessage textMessage = session.createTextMessage("ActiveMQ 发送的消息"+i);
+				messageProducer.send(textMessage);
 			}
+			session.commit();
 		} catch (JMSException e) {
 			e.printStackTrace();
 		}finally{

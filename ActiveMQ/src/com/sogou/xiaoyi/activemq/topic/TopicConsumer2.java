@@ -48,7 +48,7 @@ public class TopicConsumer2 {
 			//消息消费者
 			messageCosumer = session.createConsumer(destination);
 			//注册监听器
-			messageCosumer.setMessageListener(new Listener1());
+			messageCosumer.setMessageListener(new Listener2());
 		} catch (JMSException e) {
 			e.printStackTrace();
 		}finally{

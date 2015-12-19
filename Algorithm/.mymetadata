@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="Algorithm"
+  id="myeclipse.1442506641400"
+  context-root="/interview"
+  j2ee-spec="5.0"
+  archive="Algorithm.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

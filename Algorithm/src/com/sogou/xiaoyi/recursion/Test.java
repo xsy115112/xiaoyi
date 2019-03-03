@@ -2,18 +2,40 @@ package com.sogou.xiaoyi.recursion;
 
 public class Test {
 	
-	public static void main(String[] args) {
-		int [] a = {1,2,4,5,8,2,3,4,10,470,23,45,67,23};
-		//BubbleSorter(a);
-		quickSort(a,0,a.length-1);
-		for(int i=0;i<a.length;i++){
-			System.out.print("     "+a[i]);
+	public static void main(String[] args) throws InterruptedException {
+//		int [] a = {1,2,4,5,8,2,3,4,10,470,23,45,67,23};
+//		//BubbleSorter(a);
+//		quickSort(a,0,a.length-1);
+//		for(int i=0;i<a.length;i++){
+//			System.out.print("     "+a[i]);
+//		}
+//		System.out.println("\n");
+//		System.out.println(binarySearch(a, 10));
+		int big = 40000;
+		int small = 200;
+		System.out.println("大循环数--->"+big);
+		System.out.println("小循环数--->"+small);
+		
+		long start = System.currentTimeMillis();
+		for(int i=0;i<big;i++){
+			for(int j=0;j<small;j++){
+//				Thread.sleep(1);
+				System.out.println(1);
+			}
 		}
-		System.out.println("\n");
-		System.out.println(binarySearch(a, 10));
+		System.out.println("大循环套小循环--->"+(System.currentTimeMillis()-start));
+		
+//		long start1 = System.currentTimeMillis();
+//		for(int i=0;i<small;i++){
+//			for(int j=0;j<big;j++){
+////				Thread.sleep(2);
+//				System.out.println(2);
+//			}
+//		}
+//		System.out.println("小循环套大循环--->"+(System.currentTimeMillis()-start1));
 	}
 
-	//???�?
+	//???�?
 	public static void BubbleSorter (int[] list){
 		for(int i=0;i<list.length;i++){
 			for(int j=i+1;j<list.length;j++){
@@ -25,7 +47,7 @@ public class Test {
 			}
 		}
 	}
-	//�??????��??
+	//�??????��??
 	public static int binarySearch(int[] list, int key){
 		int low = 0;
 		int high = list.length-1;
@@ -42,7 +64,7 @@ public class Test {
 		return -1;
 	}
 	
-	//�???????�?
+	//�???????�?
 	public static void quickSort(int[] arr,int left,int right){
 		if(left < right){
 			int low = left,high = right;

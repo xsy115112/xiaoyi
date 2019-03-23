@@ -1,4 +1,4 @@
-package com.sogou.xiaoyi.array;
+package com.sogou.xiaoyi.list;
 
 public class FindKthList {
 	

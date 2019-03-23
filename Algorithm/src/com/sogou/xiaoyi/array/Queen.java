@@ -1,4 +1,4 @@
-package com.sogou.galaxy;
+package com.sogou.xiaoyi.array;
 
 /**
  * 八皇后问题

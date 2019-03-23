@@ -1,4 +1,4 @@
-package com.roc.api.trace.core;
+package com.sogou.xiaoyi.array;
 
 public class RemoveNthFromEndKthList {
 	
